@@ -1,43 +1,41 @@
 package Staff;
 
 import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.sql.Connection;
 
 public class SpageDatabase {
 
-	final String DRIVER="com.mysql.cj.jdbc.Driver";
+	final static String DRIVER="com.mysql.cj.jdbc.Driver";
 	final String HOST="localhost";
 	final int PORT=3306;
 	final String DBNAME="Hotel";
 	final String USER="root";
 	final String PASS="Ayush@12345";
+final String URL="jdbc:mysql://"+HOST+":"+PORT+"/"+DBNAME;
 
-	final String URL="jdbc:mysql://"+HOST+":"+PORT+"/"+DBNAME;
-	final String SQL = "select s.staff_id,s.assign_task,a.room_no, a.roomavaiablity, a.cleaningstatus FROM staff "
-			+ "JOIN admin a ON s.staff_id = a.staff_id;";
 			
-	public Connection connect() {
-		Connection conn=null;
-		try {
-			Class.forName(DRIVER); //Loading driver class
-			conn = DriverManager.getConnection(URL, USER, PASS);
-		}
-		catch(Exception ex) {
-			System.out.println("Error : "+ex.getMessage());
-		}
-		return conn;
-	}
-	public boolean close(Connection conn) {
-		boolean result = false;
-		try {
-			if (!conn.isClosed()) {
-		conn.close();
-				result = true;
-			}
-		} catch (Exception ex) {
-			System.out.println("Error : " + ex.getMessage());
-		}
-		return result;
-	}
-}
+	 static {
+	        try {
+	            Class.forName(DRIVER);
+	        } catch (ClassNotFoundException e) {
+	            System.err.println("Not found!");
+	            e.printStackTrace();
+	        }
+	    }
 
+	 public Connection getConnection() throws SQLException {
+	        return DriverManager.getConnection(URL, USER, PASS);
+	    }
+	    public void close(Connection conn) {
+	        if (conn != null) {
+	            try {
+	                if (!conn.isClosed()) {
+	                    conn.close();
+	                }
+	            } catch (SQLException e) {
+	                System.err.println("Failed to close connection: " + e.getMessage());
+	            }
+	            }
+	    }
+	}

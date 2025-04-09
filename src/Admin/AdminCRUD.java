@@ -10,7 +10,7 @@ import java.util.List;
 public class AdminCRUD extends AdminDatabase implements InfAdminCRUD {
 
 
-	//Insert
+	//Insert 
 	@Override
 	public boolean insert(AdminUser user) {
 		boolean result = false;
@@ -34,7 +34,7 @@ public class AdminCRUD extends AdminDatabase implements InfAdminCRUD {
 		return result;
 	}
 	
-	//search
+	//search method
 	@Override
 	public AdminUser search(int staff_id) {
 		Connection conn;
@@ -42,6 +42,7 @@ public class AdminCRUD extends AdminDatabase implements InfAdminCRUD {
 		ResultSet resultSet;
 		String sqlQuery="SELECT * FROM admin WHERE staff_id=?;";
 		AdminUser user = new AdminUser();
+		
 		
 		try {
 			conn = connect();
@@ -64,7 +65,7 @@ public class AdminCRUD extends AdminDatabase implements InfAdminCRUD {
 		return user;
 	}
 	
-	//select
+	//select method
 	@Override
 	public List all() {
 		Connection conn;
@@ -94,7 +95,7 @@ public class AdminCRUD extends AdminDatabase implements InfAdminCRUD {
 	}
 	
 	
-	//update
+	//update 
 	@Override
     public boolean update(AdminUser user) {
 		

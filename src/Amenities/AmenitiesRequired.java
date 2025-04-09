@@ -141,7 +141,7 @@ public class AmenitiesRequired extends Application {
 		primaryStage.setHeight(500);
 		
 
-		pane.getChildren().add(lblTitle); //Pane
+		pane.getChildren().add(lblTitle); 
 		pane.getChildren().add(lblRoomNo);
 		pane.getChildren().add(txtRoomNo); 
 		pane.getChildren().addAll(lblSoap, txtSoap);

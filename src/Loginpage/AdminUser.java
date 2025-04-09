@@ -5,8 +5,8 @@ public class AdminUser {
 	
 	private int StaffID;
 	private String AvaiableStatus;
-	private int RoomNo;
-	private String Roomavaiability ;
+	private String RoomNo;
+	private String Roomavaiablity ;
 	private String CleaningStatus;
 	
 
@@ -15,18 +15,18 @@ public class AdminUser {
 	public AdminUser() {
 		
 		this.StaffID = 0;
-		this.RoomNo=0;
+		this.RoomNo="";
 		this.AvaiableStatus = "";
-		this.Roomavaiability = "";
+		this.Roomavaiablity = "";
 		this.CleaningStatus = "";
 		
 	}
 	
-	public AdminUser( int StaffID, int RoomNo,String AvaiableStatus, String Roomavaiability, String CleaningStatus) {
+	public AdminUser( int StaffID, String RoomNo,String AvaiableStatus, String Roomavaiablity, String CleaningStatus) {
 		this.StaffID = StaffID;
 		this.RoomNo=RoomNo;
 		this.AvaiableStatus = AvaiableStatus;
-		this.Roomavaiability = Roomavaiability;
+		this.Roomavaiablity = Roomavaiablity;
 		this.CleaningStatus = CleaningStatus;
 		
 	}
@@ -35,7 +35,7 @@ public class AdminUser {
 		this.StaffID= user.StaffID;
 		this.RoomNo=user.RoomNo;
 		this.AvaiableStatus = user.AvaiableStatus;
-		this.Roomavaiability = user.Roomavaiability;
+		this.Roomavaiablity = user.Roomavaiablity;
 		this.CleaningStatus = user.CleaningStatus;
 	
 	}
@@ -56,20 +56,20 @@ public class AdminUser {
 		AvaiableStatus = avaiableStatus;
 	}
 
-	public int getRoomNo() {
+	public String getRoomNo() {
 		return RoomNo;
 	}
 
-	public void setRoomNo(int roomNo) {
+	public void setRoomNo(String roomNo) {
 		RoomNo = roomNo;
 	}
 
-	public String getRoomavaiability() {
-		return Roomavaiability;
+	public String getRoomavaiablity() {
+		return Roomavaiablity;
 	}
 
-	public void setRoomavaiability(String roomavaiability) {
-		Roomavaiability = roomavaiability;
+	public void setRoomavaiablity(String roomavaiablity) {
+		Roomavaiablity = roomavaiablity;
 	}
 
 	public String getCleaningStatus
@@ -85,7 +85,7 @@ public class AdminUser {
 	@Override
 	public String toString() {
 		return "AdminUser [StaffID=" + StaffID + ", AvaiableStatus=" + AvaiableStatus + ", RoomNo=" + RoomNo
-				+ ", Roomavaiability=" + Roomavaiability + ", CleaningStatus=" + CleaningStatus + "]";
+				+ ", Roomavaiablity=" + Roomavaiablity + ", CleaningStatus=" + CleaningStatus + "]";
 	}
 	
 

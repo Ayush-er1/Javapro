@@ -1,10 +1,5 @@
 package Loginpage;
 
-
-	
-
-
-
 	import java.sql.DriverManager;
 	import java.sql.Connection;
 
@@ -16,9 +11,8 @@ package Loginpage;
 		final String DBNAME="Hotel";
 		final String USER="root";
 		final String PASS="Ayush@12345";
-//		final String DBTable="amenities";
 		final String URL="jdbc:mysql://"+HOST+":"+PORT+"/"+DBNAME;
-		final String SQL = "INSERT INTO amdmin VALUES(?,'?','?','?','?');";
+		final String SQL = "INSERT INTO admin VALUES(?,'?','?','?','?');";
 				
 		public Connection connect() {
 			Connection conn=null;
@@ -45,7 +39,5 @@ package Loginpage;
 			return result;
 		}
 	}
-
-
 
 

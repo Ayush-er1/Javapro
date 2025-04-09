@@ -15,16 +15,18 @@ public class AdminCRUD extends AdminDatabase implements InfAdminCRUD {
 	public boolean insert(AdminUser user) {
 		boolean result = false;
 		PreparedStatement pStat;
-		String sql = "INSERT INTO admin (staff_id, avaiablestatus, room_no,roomavaiablity, cleaningstatus) VALUES (?, ?, ?, ?, ?);";
+		String sql = "INSERT INTO admin (staff_id, avaiablestatus,room_no,roomavaiablity, cleaningstatus) VALUES (?, ?, ?, ?, ?);";
 
 		try {
+			
 			pStat=connect().prepareStatement(sql);
 			pStat.setInt(1, user.getStaffID());
             pStat.setString(2, user.getAvaiableStatus());
-            pStat.setInt(3, user.getRoomNo());
-            pStat.setString(4, user.getRoomavaiability());
+            pStat.setString(3, user.getRoomNo());
+            pStat.setString(4, user.getRoomavaiablity());
             pStat.setString(5, user.getCleaningStatus());
 			pStat.executeUpdate();
+			
 			pStat.close();
 			result=true;
 		}
@@ -52,8 +54,8 @@ public class AdminCRUD extends AdminDatabase implements InfAdminCRUD {
 			while(resultSet.next()) {
 				user.setStaffID(resultSet.getInt("staff_id"));
 				user.setAvaiableStatus(resultSet.getString("avaiablestatus"));
-				user.setRoomNo(resultSet.getInt("room_no"));
-				user.setRoomavaiability(resultSet.getString("roomavaiablity"));
+				user.setRoomNo(resultSet.getString("room_no"));
+				user.setRoomavaiablity(resultSet.getString("roomavaiablity"));
 				user.setCleaningStatus(resultSet.getString("cleaningstatus"));
 				
 			}
@@ -80,8 +82,8 @@ public class AdminCRUD extends AdminDatabase implements InfAdminCRUD {
 				AdminUser user = new AdminUser();
 				user.setStaffID(resultSet.getInt("staff_id"));
 				user.setAvaiableStatus(resultSet.getString("avaiablestatus"));
-				user.setRoomNo(resultSet.getInt("room_no"));
-				user.setRoomavaiability(resultSet.getString("roomavaiablity"));
+				user.setRoomNo(resultSet.getString("room_no"));
+				user.setRoomavaiablity(resultSet.getString("roomavaiablity"));
 				user.setCleaningStatus(resultSet.getString("cleaningstatus"));
 				
 				users.add(user);
@@ -100,16 +102,17 @@ public class AdminCRUD extends AdminDatabase implements InfAdminCRUD {
 		
 		boolean result=false;
 		Connection conn;
-		String strSQL="UPDATE admin SET staff_id, avaiablestatus, room_no,roomavaiablity, cleaningstatus) VALUES (?, ?, ?, ?, ?);";
+		String strSQL = "UPDATE admin SET avaiablestatus=?, room_no=?, roomavaiablity=?, cleaningstatus=? WHERE staff_id=?";
 		PreparedStatement pStat;
 		
 		try {
+			
 			conn = connect();
 			pStat = conn.prepareStatement(strSQL);
 			pStat.setInt(1,user.getStaffID());
             pStat.setString(2,user.getAvaiableStatus());
-            pStat.setInt(3,user.getRoomNo());
-            pStat.setString(4,user.getRoomavaiability());
+            pStat.setString(3,user.getRoomNo());
+            pStat.setString(4,user.getRoomavaiablity());
             pStat.setString(5,user.getCleaningStatus());
 			pStat.executeUpdate(); 
 			pStat.close();
@@ -124,27 +127,24 @@ public class AdminCRUD extends AdminDatabase implements InfAdminCRUD {
 	
 	//Delete
 	@Override
-	public boolean delete(int staffID) {		
-		boolean result=false;
-		Connection conn;
-		String strSQL="DELETE FROM admin WHERE staff_id=?;";
-		PreparedStatement pStat;		
-		try {
-			conn = connect();
-			pStat = conn.prepareStatement(strSQL);
-			 
-			pStat.setInt(1,staffID);		
-			pStat.executeUpdate(); //insert, update, delete
-			pStat.close();
-			close(conn);
-			result=true;
-		}
-		catch(Exception ex) {
-			System.out.println("Error : "+ex.getMessage());
-		}
-		return result;
+	public boolean delete(int staffID) {
+	    boolean result = false;
+	    Connection conn;
+	    String strSQL = "DELETE FROM admin WHERE staff_id = ?;";
+	    PreparedStatement pStat;
+	    try {
+	       conn = connect();
+	        pStat = conn.prepareStatement(strSQL);
+	        pStat.setInt(1, staffID);
+	       pStat.executeUpdate();
+	        pStat.close();
+	        close(conn);
+	        result = true;
+	    } catch (Exception ex) {
+	        System.out.println("Error :" +ex.getMessage());
+	    }
+	    return result;
 	}
-
 }
 
 

@@ -18,7 +18,7 @@ public class LoginpageDatabase {
     final String URL = "jdbc:mysql://" + HOST + ":" + PORT + "/" + DBNAME;
 
     // Method to validate user credentials
-    public static boolean validateUser(String username, String password) {
+    public static String validateUser(String username, String password) {
         String query = "SELECT * FROM login WHERE Userid=? AND password=?";
         
         try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/Hotel","root","Ayush@12345");
@@ -26,13 +26,18 @@ public class LoginpageDatabase {
 
             stmt.setString(1,username);
             stmt.setString(2,password);
-            ResultSet rs = stmt.executeQuery();
-            return rs.next(); 
-
+           try( ResultSet rs = stmt.executeQuery()){
+        	   if(rs.next()) {
+        		   return rs.getString("role");
+        	   }
+           }
+         
         } catch (SQLException e) {
+        	System.err.println("Database error:"+e.getMessage());
             e.printStackTrace();
-            return false;
+            
         }
+        return null;
     }
 }
 

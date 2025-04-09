@@ -4,6 +4,7 @@ package Staff;
 	import java.util.List;
 
 import Loginpage.AdminHome;
+import Loginpage.AmenitiesRequired;
 import javafx.application.Application;
 	import javafx.event.ActionEvent;
 	import javafx.event.Event;
@@ -18,7 +19,9 @@ import javafx.application.Application;
 	import javafx.scene.control.TableView;
 	import javafx.scene.control.cell.PropertyValueFactory;
 	import javafx.scene.layout.Pane;
-    import javafx.scene.text.Font;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 	import javafx.stage.Stage;
 
 	public class StaffFront extends Application {
@@ -33,61 +36,72 @@ import javafx.application.Application;
 			Pane pane = new Pane();
 			Scene scene = new Scene(pane);
 			primaryStage.setScene(scene);
-			primaryStage.setWidth(600);
-			primaryStage.setHeight(375);
+			primaryStage.setWidth(1580);
+			primaryStage.setHeight(840);
 
-			lblTitle = new Label("Home");
-			lblTitle.relocate(270, 0);
-			Font font = new Font("Arial", 20);
+			 VBox Hea = new VBox();
+		        Hea.setStyle("-fx-background-color: black;");
+		        Hea.setLayoutX(0);
+		        Hea.setLayoutY(0);
+		        Hea.setPrefWidth(1580);
+		        Hea.setPrefHeight(50);
+		        
+			lblTitle = new Label("Assign Task and room status");
+			Font font = new Font("Arial", 27);
 			lblTitle.setFont(font);
+			lblTitle.relocate(57, 0);
+			lblTitle.setTextFill(Color.WHITE); 
 
 			btnClear = new Button("Clear All");
-			btnClear.relocate(50, 300);
+			btnClear.relocate(400, 730);
+			btnClear.setStyle("-fx-background-color: Gray; -fx-text-fill: white;-fx-font-size: 16px;-fx-background-radius:12;");
 
 			btnDisplay = new Button("Display All");
-			btnDisplay.relocate(150, 300);
+			btnDisplay.relocate(600, 730);
+			btnDisplay.setStyle("-fx-background-color: Green; -fx-text-fill: white;-fx-font-size: 16px;-fx-background-radius:12;");
 
 			btnClose = new Button("Close");
-			btnClose.relocate(250, 300);
-			 
-			btnUpdate = new Button("Inventory");
-			btnUpdate.relocate(350, 300);
+			btnClose.relocate(800, 730);
+			btnClose.setStyle("-fx-background-color: Red; -fx-text-fill: white;-fx-font-size: 16px;-fx-background-radius:12;");
 			
+			btnUpdate = new Button("Inventory");
+			btnUpdate.relocate(1000, 730);
+			btnUpdate.setStyle("-fx-background-color: Blue; -fx-text-fill: white;-fx-font-size: 16px;-fx-background-radius:12;");
 	 			  
 			 // TableView
 			tblUsers = new TableView();
-			tblUsers.setPrefHeight(250);
-			tblUsers.setPrefWidth(500);
-			tblUsers.relocate(60, 30);
+			tblUsers.setPrefHeight(600);
+			tblUsers.setPrefWidth(1440);
+			tblUsers.relocate(60, 90);
 
 			// Columns
-			TableColumn<SpageUser, Integer> colstaff_id = new TableColumn<>("StaffID");
-			TableColumn<SpageUser, Integer> colassignedtask = new TableColumn<>("Assigned Task");
-			TableColumn<SpageUser, Integer> colRoomNO = new TableColumn<>("RoomNO");
-			TableColumn<SpageUser, Integer> colRoomavaiability = new TableColumn<>("Roomavaiability");
-			TableColumn<SpageUser, Integer> colCleaningStatus = new TableColumn<>("CleaningStatus");
+			TableColumn<SpageUser, Integer> Astaff_id = new TableColumn<>("Staff ID");
+			TableColumn<SpageUser, Integer> yassignedtask = new TableColumn<>("Assigned Task");
+			TableColumn<SpageUser, Integer> uRoomNO = new TableColumn<>("RoomNO");
+			TableColumn<SpageUser, Integer> sRoomavaiability = new TableColumn<>("Room Avaiability");
+			TableColumn<SpageUser, Integer> hCleaningStatus = new TableColumn<>("Cleaning Status");
 			
 			//adjusting columns size
-			colstaff_id.setPrefWidth(100);
-	        colassignedtask.setPrefWidth(100);
-	        colRoomNO.setPrefWidth(100);
-	        colRoomavaiability.setPrefWidth(100);
-	        colCleaningStatus.setPrefWidth(100);
+			Astaff_id.setPrefWidth(290);
+	        yassignedtask.setPrefWidth(290);
+	        uRoomNO.setPrefWidth(290);
+	        sRoomavaiability.setPrefWidth(290);
+	       hCleaningStatus.setPrefWidth(290);
 
 			
 			// Add on table
-			tblUsers.getColumns().add(colstaff_id);
-			tblUsers.getColumns().add(colassignedtask);
-			tblUsers.getColumns().add(colRoomNO);
-			tblUsers.getColumns().add(colRoomavaiability);
-			tblUsers.getColumns().add(colCleaningStatus);
-
+			tblUsers.getColumns().add(Astaff_id);
+			tblUsers.getColumns().add(yassignedtask);
+			tblUsers.getColumns().add(uRoomNO);
+			tblUsers.getColumns().add(sRoomavaiability);
+			tblUsers.getColumns().add(hCleaningStatus);
+			tblUsers.setStyle("-fx-font-size: 14px;"); 
 			// Binding column with instance variable of class
-			colstaff_id.setCellValueFactory(new PropertyValueFactory<>("StaffID"));
-			colassignedtask.setCellValueFactory(new PropertyValueFactory<>("AssignedTask"));
-			colRoomNO.setCellValueFactory(new PropertyValueFactory<>("RoomNo"));
-			colRoomavaiability.setCellValueFactory(new PropertyValueFactory<>("Room avaiability"));
-			colCleaningStatus.setCellValueFactory(new PropertyValueFactory<>("CleaningStatus"));
+			Astaff_id.setCellValueFactory(new PropertyValueFactory<>("StaffID"));
+			yassignedtask.setCellValueFactory(new PropertyValueFactory<>("AssignedTask"));
+			uRoomNO.setCellValueFactory(new PropertyValueFactory<>("RoomNo"));
+			sRoomavaiability.setCellValueFactory(new PropertyValueFactory<>("Roomavaiability"));
+			hCleaningStatus.setCellValueFactory(new PropertyValueFactory<>("CleaningStatus"));
 
 			btnClear.setOnAction(new EventHandler<ActionEvent>() {
 
@@ -100,24 +114,20 @@ import javafx.application.Application;
 
 			btnDisplay.setOnAction(new EventHandler<ActionEvent>() {
 				@Override
-				public void handle(ActionEvent actionEvent) {
-					List<SpageUser> users = new SpageCRUD().all();
-					// clear All
-					tblUsers.getItems().clear();
-					// Add rows
-					for (SpageUser user : users) {
-						tblUsers.getItems().add(user);
-					}
-
-				}
+			    public void handle(ActionEvent actionEvent) {
+			        List<SpageUser> users = new SpageCRUD().all();
+			        tblUsers.getItems().clear();
+			        tblUsers.getItems().addAll(users);
+			    }
 			});
+
 			btnUpdate.setOnAction(new EventHandler<ActionEvent>() {
 		            @Override
 		            public void handle(ActionEvent actionEvent) {
 		                // This Display inventory management
 		                Stage Update = new Stage();
 		                try {
-		                    new AdminHome().start(Update);
+		                    new AmenitiesRequired().start(Update);
 		                } catch (Exception e) {
 		                    e.printStackTrace();
 		                }
@@ -133,7 +143,8 @@ import javafx.application.Application;
 
 				}
 			});
-
+            
+			pane.getChildren().add(Hea);
 			pane.getChildren().addAll(lblTitle, btnClear, btnDisplay, btnClose,btnUpdate);
 			pane.getChildren().add(tblUsers);
 			
@@ -147,6 +158,4 @@ import javafx.application.Application;
 			launch(args);
 		}
 	}
-
-
 

@@ -5,7 +5,7 @@ package Staff;
 public class SpageUser {
 	private int StaffID;
 	private String AssignedTask;
-	private int RoomNo;
+	private String RoomNo;
 	private String Roomavaiability ;
 	private String CleaningStatus;
 	
@@ -15,13 +15,13 @@ public class SpageUser {
 	public SpageUser() {
 		this.StaffID=0;
 		this.AssignedTask="";
-		this.RoomNo=0;
+		this.RoomNo="";
 		this.Roomavaiability = "";
 		this.CleaningStatus = "";
 		
 	}
 	
-	public SpageUser( int StaffID, String AssignedTask,int RoomNo, String Roomavaiability, String CleaningStatus) {
+	public SpageUser( int StaffID, String AssignedTask,String RoomNo, String Roomavaiability, String CleaningStatus) {
 		this.StaffID = StaffID;
 		this.AssignedTask = AssignedTask;
 		this.RoomNo=RoomNo;
@@ -55,11 +55,11 @@ public class SpageUser {
 		AssignedTask = assignedTask;
 	}
 
-	public int getRoomNo() {
+	public String getRoomNo() {
 		return RoomNo;
 	}
 
-	public void setRoomNo(int roomNo) {
+	public void setRoomNo(String roomNo) {
 		RoomNo = roomNo;
 	}
 
@@ -86,7 +86,6 @@ public class SpageUser {
 		return "AdminUser [StaffID=" + StaffID + ", AssignedTask=" + AssignedTask + ", RoomNo=" + RoomNo
 				+ ", Roomavaiability=" + Roomavaiability + ", CleaningStatus=" + CleaningStatus + "]";
 	}
-	
 
 
 }

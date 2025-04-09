@@ -12,6 +12,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
@@ -24,65 +26,67 @@ public class AmenitiesRequired extends Application {
 		TextField txtToothpaste, txtRoomNo, txtSoap, txtToothbrush, txtShampoo;
 		Button btnTurnOver,btnSearch,btnClose;
 		
-		lblTitle=new Label("AMENITIES REQUIRED");
-		lblTitle.relocate(50, 0);
-		Font font1 = new Font("Arial", 18);
+		lblTitle=new Label("Inventory Management");
+		lblTitle.relocate(100,50);
+		Font font1 = new Font("Arial",22);
 		lblTitle.setFont(font1);
 		
-		lblRoomNo = new Label("RoomNO");
-		lblRoomNo.relocate(50, 40);
+		lblRoomNo = new Label("Room  NO");
+		lblRoomNo.relocate(70, 140);
         lblRoomNo.setStyle("-fx-font-size:14");
 		
 		txtRoomNo = new TextField();
-		txtRoomNo.relocate(50,70);
+		txtRoomNo.relocate(210,140);
 		
-		lblSoap=new Label("Soap");
-		lblSoap.relocate(50,100);
+		lblSoap=new Label("Soap Quantity");
+		lblSoap.relocate(70,190);
         lblSoap.setStyle("-fx-font-size:14");
 		
 		txtSoap= new TextField();
-		txtSoap.relocate(50,130);
+		txtSoap.relocate(210,190);
 		
-		lblToothpaste=new Label("Toothpast");
-		lblToothpaste.relocate(50,160);
+		lblToothpaste=new Label("Toothpast Quantity");
+		lblToothpaste.relocate(70,240);
         lblToothpaste.setStyle("-fx-font-size:14");
 		
 		txtToothpaste=new TextField();
-		txtToothpaste.relocate(50,190);
+		txtToothpaste.relocate(210,240);
 		
-		lblToothbrush=new Label("Toothbrush");
-		lblToothbrush.relocate(50,220);
+		lblToothbrush=new Label("Toothbrush Quantity");
+		lblToothbrush.relocate(70,290);
         lblToothbrush.setStyle("-fx-font-size:14");
 		
 		txtToothbrush=new TextField();
-		txtToothbrush.relocate(50,250);
+		txtToothbrush.relocate(210,290);
 		
-		lblShampoo = new Label("Shampoo");
-		lblShampoo.relocate(50,280);
+		lblShampoo = new Label("Shampoo Quantity");
+		lblShampoo.relocate(70,340);
         lblShampoo.setStyle("-fx-font-size:14");
 		
 		txtShampoo=new TextField();
-		txtShampoo.relocate(50,310);
+		txtShampoo.relocate(210,340);
 		
 		
 		
 		btnTurnOver=new Button("Save");
-		btnTurnOver.relocate(50, 400);
+		btnTurnOver.relocate(90, 460);
+		btnTurnOver.setStyle("-fx-background-color:green; -fx-text-fill: white;-fx-font-size:13");
 		
 		btnSearch=new Button("Search");
-		btnSearch.relocate(150, 400);
-		
+		btnSearch.relocate(200, 460);
+		btnSearch.setStyle("-fx-background-color: blue; -fx-text-fill: white;-fx-font-size:13");
 	
 		
-		btnClose=new Button("Close");
-		btnClose.relocate(250, 400);
+		btnClose=new Button("Exit");
+		btnClose.relocate(310, 460);
+		btnClose.setStyle("-fx-background-color: Red; -fx-text-fill: white;-fx-font-size:13");
 		
 		lblMessage = new Label("Message");
-		lblMessage.relocate(50, 430);
+		lblMessage.relocate(70, 530);
 		 lblMessage.setStyle("-fx-font-size:14");
 		
 		
-		//Insert
+		//Insert data
 		btnTurnOver.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent actionEvent) {
@@ -94,23 +98,27 @@ public class AmenitiesRequired extends Application {
 				user.setShampoo(txtShampoo.getText());
 				boolean result = new UserCRUD().insert(user);
 				if(result==true) {
-					lblMessage.setText("Insert User Successfully");
+					lblMessage.setText("Data Insert sucessful");
+					 primaryStage.close();
 				}
+				
 				else {
-					lblMessage.setText("Error to insert User");
+					lblMessage.setText("Error to insert Data");
+					lblMessage.setStyle("-fx-text-fill: RED;");
 				}
+				
 			}
 		});
 
 		
-		//Search
+		//Search data
 				btnSearch.setOnAction(new EventHandler<ActionEvent>() {
 					@Override
 					public void handle(ActionEvent actionEvent) {
 						int roomNo = Integer.parseInt(txtRoomNo.getText());
 						AmenitiesUser user = new UserCRUD().search(roomNo);
 						if(user.getRoomNo()>0) {
-							//Record found and display
+							//all insert record found 
 							txtSoap.setText(user.getSoap());
 							txtToothpaste.setText(user.getToothpaste());
 			                txtToothbrush.setText(user.getToothbrush());
@@ -124,6 +132,7 @@ public class AmenitiesRequired extends Application {
 							txtShampoo.setText("");
 
 							lblMessage.setText("Record not found !");
+							lblMessage.setStyle("-fx-text-fill: RED;");
 						}
 					}
 				});
@@ -135,16 +144,26 @@ public class AmenitiesRequired extends Application {
 					}
 				});
 		
-		
+				
+				Rectangle amenities = new Rectangle();
+				amenities.setArcWidth(20);
+				amenities.setArcHeight(20);
+				amenities.setWidth(330);
+				amenities.setHeight(330);
+				amenities.relocate(60, 110);
+				amenities.setFill(Color.WHITE); 
+				amenities.setStroke(Color.DARKGRAY); 
+				amenities.setStrokeWidth(1);
 		
 		Pane pane=new Pane();
 		Scene scene = new Scene(pane);
 		primaryStage.setScene(scene);
-		primaryStage.setWidth(350);
-		primaryStage.setHeight(500);
-		
+		 primaryStage.setWidth(450);
+		primaryStage.setHeight(600);
+		 pane.setStyle("-fx-background-color:#B0E0E6;");
 
-		pane.getChildren().add(lblTitle); //Pane
+		pane.getChildren().add(lblTitle); 
+		pane.getChildren().add(amenities);
 		pane.getChildren().add(lblRoomNo);
 		pane.getChildren().add(txtRoomNo); 
 		pane.getChildren().addAll(lblSoap, txtSoap);
