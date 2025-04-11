@@ -20,15 +20,18 @@ public class AdminHome extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		
+		//Declare
 		Label lblTitle, lblStaffID, lblAvaiableStatus, lblRoomNo, lblRoomAvaiability, lblCleaningstatus,lblMessage;
 		TextField txtStaffID, txtAvaiableStatus, txtRoomNo, txtRoomAvaiability, txtCleaningstatus;
 		Button btnSave,btnSearch,btnClose,btnDelete;
 		
+		//Title 
 		lblTitle=new Label("Update Staff Record!");
 		lblTitle.relocate(40, 0);
 		Font font1 = new Font("Arial", 20);
 		lblTitle.setFont(font1);
 		
+		//label and Textfield
 		lblStaffID = new Label("Staff ID");
 		lblStaffID.relocate(50, 130);
 		Font font2 = new Font("Times New Roman", 17);
@@ -66,7 +69,7 @@ public class AdminHome extends Application {
 		txtCleaningstatus.relocate(300,340);
 		
 		
-		
+		//Adjusting buttons
 		btnSave=new Button("Save");
 		btnSave.relocate(310, 400);
 		btnSave.setStyle("-fx-background-color: Green; -fx-text-fill: white;-fx-font-size:13");
@@ -90,7 +93,7 @@ public class AdminHome extends Application {
 		 lblMessage.setStyle("-fx-font-size:14");
 		
 		
-		//Insert
+		//Inserting data
 		btnSave.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent actionEvent) {
@@ -103,17 +106,18 @@ public class AdminHome extends Application {
 				user.setCleaningStatus(txtCleaningstatus.getText());
 				boolean result = new AdminCRUD().insert(user);
 				if(result==true) {
-					lblMessage.setText("Insert User Successfully");
+					lblMessage.setText("Insert Data Successfull");
 				}
 				else {
-					lblMessage.setText("Error to insert User");
+					//If error to insert data
+					lblMessage.setText("Error to insert Data");
 				}
 			}
 		});
 		
 
 		
-		//Search
+		//Search button
 				btnSearch.setOnAction(new EventHandler<ActionEvent>() {
 					@Override
 					public void handle(ActionEvent actionEvent) {
@@ -132,13 +136,13 @@ public class AdminHome extends Application {
 							txtRoomNo.setText("");
                   			txtRoomAvaiability.setText("");
 							txtCleaningstatus.setText("");
-
+                            //If record not found
 							lblMessage.setText("Record not found !");
 						}
 					}
 				});
 				
-				
+				//action close button
 				btnClose.setOnAction(new EventHandler<ActionEvent>() {
 					@Override
 					public void handle(ActionEvent arg0) {
@@ -169,7 +173,7 @@ public class AdminHome extends Application {
 				staffId.setStrokeWidth(2);
 		
 		
-		
+		//Adjusting size and color
 		Pane pane=new Pane();
 		Scene scene = new Scene(pane);
 		primaryStage.setScene(scene);
@@ -177,6 +181,7 @@ public class AdminHome extends Application {
 		primaryStage.setHeight(600);
 		pane.setStyle("-fx-background-color: #e6f3ff;");
 
+		//pane
 		pane.getChildren().add(lblTitle); 
 		pane.getChildren().add(staffId);
 		pane.getChildren().add(other);

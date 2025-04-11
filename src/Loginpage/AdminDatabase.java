@@ -17,6 +17,7 @@ package Loginpage;
 		public Connection connect() {
 			Connection conn=null;
 			try {
+				
 				Class.forName(DRIVER); //Loading driver class
 				conn = DriverManager.getConnection(URL, USER, PASS);
 			}

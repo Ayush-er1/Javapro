@@ -32,6 +32,7 @@ import javafx.stage.Stage;
 
 		@Override
 		public void start(Stage primaryStage) throws Exception {
+			//Declare
 			Label lblTitle,lblTitle2 ;
 			Button btnDisplay, btnClose,btnUpdate,btnDelete;
 			TableView tblTable;
@@ -61,7 +62,7 @@ import javafx.stage.Stage;
 			lblTitle.setTextFill(Color.BLUE); 
 			
 			
-			
+			//adjusting and initialize buttons
 			btnDisplay = new Button("Display");
 			btnDisplay.relocate(400, 730);
 			btnDisplay.setStyle("-fx-background-color: Green; -fx-text-fill: white;-fx-font-size: 16px;-fx-background-radius:12;");
@@ -90,9 +91,6 @@ import javafx.stage.Stage;
 			        menu.setStyle("-fx-font-size:16");
 			        MenuItem menu1 = new MenuItem("ManageStaff"); 
 			        MenuItem menu2 = new MenuItem("Invontary Management"); 
-			        MenuItem export = new MenuItem("Export to PDF");
-			        menu.getItems().add(export);
-			        
 			
 			        menu.getItems().add(menu1); 
 			        menu.getItems().add(menu2); 
@@ -124,11 +122,25 @@ import javafx.stage.Stage;
 //		                manageStaffStage.show();
 //		            }
 //		        });
-
+		          
+			        menu1.setOnAction(new EventHandler<ActionEvent>() {
+			            @Override
+			            public void handle(ActionEvent actionEvent) {
+			            	primaryStage.close();
+			                // This Display ManageStaff
+			                Stage inventoryStage = new Stage();
+			                try {
+			                    new ManageStaff().start(inventoryStage);
+			                } catch (Exception e) {
+			                    e.printStackTrace();
+			                }
+			            }
+			        });
+			        
+			        
 		        menu2.setOnAction(new EventHandler<ActionEvent>() {
 		            @Override
 		            public void handle(ActionEvent actionEvent) {
-		            	primaryStage.close();
 		                // This Display inventory management
 		                Stage inventory = new Stage();
 		                try {
@@ -138,21 +150,7 @@ import javafx.stage.Stage;
 		                }
 		            }
 		        });
-		        menu1.setOnAction(new EventHandler<ActionEvent>() {
-		            @Override
-		            public void handle(ActionEvent actionEvent) {
-		            	primaryStage.close();
-		                // This Display ManageStaff
-		                Stage inventoryStage = new Stage();
-		                try {
-		                    new ManageStaff().start(inventoryStage);
-		                } catch (Exception e) {
-		                    e.printStackTrace();
-		                }
-		            }
-		        });
-		        
-		        
+	
 		     // Top Section - Title and Menu (with black background)
 		        VBox topBox = new VBox(10);
 		        topBox.setAlignment(Pos.CENTER);
@@ -166,20 +164,20 @@ import javafx.stage.Stage;
 
 			// Columns
 			TableColumn<AdminUser,Integer> cstaff_id = new TableColumn<>("StaffID");
-			TableColumn<AdminUser,Integer> cavaiablestatus = new TableColumn<>("Avaiable Status");
-			TableColumn<AdminUser,Integer> cRoomNO = new TableColumn<>("RoomNO");
-			TableColumn<AdminUser,Integer> cRoomavaiability = new TableColumn<>("Room Availability");
-			TableColumn<AdminUser,Integer> cCleaningStatus = new TableColumn<>("Cleaning Status");
+			TableColumn<AdminUser,String> cavaiablestatus = new TableColumn<>("Avaiable Status");
+			TableColumn<AdminUser,String> cRoomNO = new TableColumn<>("RoomNO");
+			TableColumn<AdminUser,String> cRoomavaiability = new TableColumn<>("Room Availability");
+			TableColumn<AdminUser,String> cCleaningStatus = new TableColumn<>("Cleaning Status");
 			
 			
-			// Add on table
+			// Add table
 			tblTable.getColumns().add(cstaff_id);
 			tblTable.getColumns().add(cavaiablestatus);
 			tblTable.getColumns().add(cRoomNO);
 			tblTable.getColumns().add(cRoomavaiability);
 			tblTable.getColumns().add(cCleaningStatus);
 
-			// Binding column with instance variable of class
+			//inserting data in column
 			cstaff_id.setCellValueFactory(new PropertyValueFactory<>("StaffID"));
 			cavaiablestatus.setCellValueFactory(new PropertyValueFactory<>("AvaiableStatus"));
 			cRoomNO.setCellValueFactory(new PropertyValueFactory<>("RoomNo"));
@@ -197,7 +195,7 @@ import javafx.stage.Stage;
 	        cCleaningStatus.setPrefWidth(290);
 
 
-	
+	//Display button in action
 			btnDisplay.setOnAction(new EventHandler<ActionEvent>() {
 				@Override
 				public void handle(ActionEvent actionEvent) {
@@ -214,7 +212,7 @@ import javafx.stage.Stage;
 			});
 			
 			
-			//update 
+			//update button
 			 btnUpdate.setOnAction(new EventHandler<ActionEvent>() {
 		            @Override
 		            public void handle(ActionEvent actionEvent) {
@@ -239,6 +237,7 @@ import javafx.stage.Stage;
 				}
 			});
 			
+			//Delete button
 			btnDelete1.setOnAction(new EventHandler<ActionEvent>() {
 			    @Override
 			   public void handle(ActionEvent Event) {
@@ -271,16 +270,16 @@ import javafx.stage.Stage;
 	    }
 			});
 
-			
+			//Pane
 			pane.getChildren().add(Top);
 			pane.getChildren().addAll(lblTitle, btnDisplay, btnClose,btnUpdate,btnDelete1,lblTitle2);
 			pane.getChildren().add(tblTable);
 			pane.getChildren().add(vb);
-		
-			primaryStage.show();
+		    primaryStage.show();
 			primaryStage.setScene(scene);
-
+	
 		}
+		
 
 		public static void main(String[] args) {
 			launch(args);

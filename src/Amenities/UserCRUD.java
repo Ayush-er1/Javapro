@@ -80,10 +80,10 @@ public class UserCRUD extends Database implements InfUserCRUD {
 			resultSet = pStat.executeQuery(); //Select
 			while(resultSet.next()) {
 				AmenitiesUser user = new AmenitiesUser();
-				user.setRoomNo(resultSet.getInt("RoomNo"));
-				user.setSoap(resultSet.getString("Soap"));
-				user.setToothpaste(resultSet.getString("Toothpaste"));
-				user.setToothbrush(resultSet.getString("Toothbrush"));
+				user.setRoomNo(resultSet.getInt("room_no"));
+				user.setSoap(resultSet.getString("soap"));
+				user.setToothpaste(resultSet.getString("toothpaste"));
+				user.setToothbrush(resultSet.getString("toothbrush"));
 				user.setShampoo(resultSet.getString("Shampoo"));
 				
 				users.add(user);

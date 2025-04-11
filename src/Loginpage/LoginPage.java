@@ -42,7 +42,7 @@ import javafx.scene.text.FontWeight;
 			 pane.setStyle("-fx-background-color:#ADD8E6;");
 			 
 			 
-			
+			//Adjusting display
 			primaryStage.setTitle("Hotel Management System");
 			primaryStage.setWidth(1580);
 			primaryStage.setHeight(840);
@@ -70,7 +70,7 @@ import javafx.scene.text.FontWeight;
 	        Font font3=new Font("Times New Roman",12);
 	        lblMessage.setFont(font3);
 	        
-	        
+	        //Buttons
 	        Button btnLogin1=new Button("Login");
 	        Button btnLogout1=new Button("Logout");
 	        
@@ -126,7 +126,7 @@ import javafx.scene.text.FontWeight;
 	        btnLogout1.setOnAction(e -> primaryStage.close());
 	        
 	       
-	        
+	        //manage color and font size
 	        btnLogin1.setStyle("-fx-background-color: Green;-fx-font-size: 13px; -fx-text-fill: white;-fx-font-weight: bold;-fx-background-radius:11;");
 	        btnLogout1.setStyle("-fx-background-color: Red;-fx-font-size: 13px; -fx-text-fill: white;-fx-font-weight: bold;-fx-background-radius:11;");
 	       
@@ -153,7 +153,7 @@ import javafx.scene.text.FontWeight;
 	        StackPane loginPane = new StackPane();
 	        loginPane.getChildren().addAll(loginBox,disign);
 	      
-	        
+	        //locating all elements
 	        pane.add(loginPane, 0, 2, 2, 6); 
 	        pane.add(lblTitle,1 ,0);
 			pane.add(lblMessage,1,13);

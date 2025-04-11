@@ -10,7 +10,7 @@ public class AdminUser {
 	private String CleaningStatus;
 	
 
-	//Constructors, Setters, Getter, and toString
+	//Constructors
 	
 	public AdminUser() {
 		
@@ -37,6 +37,8 @@ public class AdminUser {
 		this.AvaiableStatus = user.AvaiableStatus;
 		this.Roomavaiablity = user.Roomavaiablity;
 		this.CleaningStatus = user.CleaningStatus;
+		
+		//Getter and setter
 	
 	}
 

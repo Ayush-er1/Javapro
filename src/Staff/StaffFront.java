@@ -38,7 +38,7 @@ import javafx.scene.text.Font;
 			primaryStage.setScene(scene);
 			primaryStage.setWidth(1580);
 			primaryStage.setHeight(840);
-
+//adjusting nav bar
 			 VBox Hea = new VBox();
 		        Hea.setStyle("-fx-background-color: black;");
 		        Hea.setLayoutX(0);
@@ -46,6 +46,7 @@ import javafx.scene.text.Font;
 		        Hea.setPrefWidth(1580);
 		        Hea.setPrefHeight(50);
 		        
+		        //Title
 			lblTitle = new Label("Assign Task and room status");
 			Font font = new Font("Arial", 27);
 			lblTitle.setFont(font);
@@ -60,7 +61,7 @@ import javafx.scene.text.Font;
 			btnDisplay.relocate(600, 730);
 			btnDisplay.setStyle("-fx-background-color: Green; -fx-text-fill: white;-fx-font-size: 16px;-fx-background-radius:12;");
 
-			btnClose = new Button("Close");
+			btnClose = new Button("Exit");
 			btnClose.relocate(800, 730);
 			btnClose.setStyle("-fx-background-color: Red; -fx-text-fill: white;-fx-font-size: 16px;-fx-background-radius:12;");
 			
@@ -74,12 +75,12 @@ import javafx.scene.text.Font;
 			tblUsers.setPrefWidth(1440);
 			tblUsers.relocate(60, 90);
 
-			// Columns
+			// All Columns in the table
 			TableColumn<SpageUser, Integer> Astaff_id = new TableColumn<>("Staff ID");
-			TableColumn<SpageUser, Integer> yassignedtask = new TableColumn<>("Assigned Task");
-			TableColumn<SpageUser, Integer> uRoomNO = new TableColumn<>("RoomNO");
-			TableColumn<SpageUser, Integer> sRoomavaiability = new TableColumn<>("Room Avaiability");
-			TableColumn<SpageUser, Integer> hCleaningStatus = new TableColumn<>("Cleaning Status");
+			TableColumn<SpageUser, String> yassignedtask = new TableColumn<>("Assigned Task");
+			TableColumn<SpageUser, String> uRoomNO = new TableColumn<>("RoomNO");
+			TableColumn<SpageUser, String> sRoomavaiability = new TableColumn<>("Room Avaiability");
+			TableColumn<SpageUser, String> hCleaningStatus = new TableColumn<>("Cleaning Status");
 			
 			//adjusting columns size
 			Astaff_id.setPrefWidth(290);
@@ -96,22 +97,27 @@ import javafx.scene.text.Font;
 			tblUsers.getColumns().add(sRoomavaiability);
 			tblUsers.getColumns().add(hCleaningStatus);
 			tblUsers.setStyle("-fx-font-size: 14px;"); 
-			// Binding column with instance variable of class
+			
+			// connecting column with field
 			Astaff_id.setCellValueFactory(new PropertyValueFactory<>("StaffID"));
 			yassignedtask.setCellValueFactory(new PropertyValueFactory<>("AssignedTask"));
+			
 			uRoomNO.setCellValueFactory(new PropertyValueFactory<>("RoomNo"));
 			sRoomavaiability.setCellValueFactory(new PropertyValueFactory<>("Roomavaiability"));
 			hCleaningStatus.setCellValueFactory(new PropertyValueFactory<>("CleaningStatus"));
 
+			
+			//Action clear button
 			btnClear.setOnAction(new EventHandler<ActionEvent>() {
-
 				@Override
 				public void handle(ActionEvent actionEvent) {
 					tblUsers.getItems().clear();
 
 				}
 			});
-
+			
+			
+			//display button in action
 			btnDisplay.setOnAction(new EventHandler<ActionEvent>() {
 				@Override
 			    public void handle(ActionEvent actionEvent) {
@@ -121,6 +127,7 @@ import javafx.scene.text.Font;
 			    }
 			});
 
+			//Updata button in action
 			btnUpdate.setOnAction(new EventHandler<ActionEvent>() {
 		            @Override
 		            public void handle(ActionEvent actionEvent) {
@@ -134,7 +141,8 @@ import javafx.scene.text.Font;
 		            }
 		        });
 			
-
+		
+//action close buttons
 			btnClose.setOnAction(new EventHandler<ActionEvent>() {
 				@Override
 				public void handle(ActionEvent actionEvent) {
@@ -144,6 +152,7 @@ import javafx.scene.text.Font;
 				}
 			});
             
+			//pane
 			pane.getChildren().add(Hea);
 			pane.getChildren().addAll(lblTitle, btnClear, btnDisplay, btnClose,btnUpdate);
 			pane.getChildren().add(tblUsers);

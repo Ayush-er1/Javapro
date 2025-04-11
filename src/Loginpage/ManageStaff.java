@@ -18,10 +18,12 @@ public class ManageStaff extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		
+		//Declare
 		Label lblTitle, lblStaffID, lblAssignTask, lblMessage;
 		TextField txtStaffID, txtAssignTask;
 		Button btnSave,btnSearch,btnClose;
 		
+		//Title
 		lblTitle=new Label("Manage Staff");
 		lblTitle.relocate(700,180);
 		Font font1 = new Font("Arial", 28);
@@ -64,7 +66,7 @@ public class ManageStaff extends Application {
 		
 		
 		
-		//Insert
+		//Save button in action
 		btnSave.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent actionEvent) {
@@ -90,7 +92,7 @@ public class ManageStaff extends Application {
 		});
 
 		
-		//Search
+		//Search button
 				btnSearch.setOnAction(new EventHandler<ActionEvent>() {
 					@Override
 					public void handle(ActionEvent actionEvent) {
@@ -126,15 +128,15 @@ public class ManageStaff extends Application {
 				staffbox.setStrokeWidth(2);
 		
 		
-		
+		//Adjusting Display
 		Pane pane=new Pane();
 		Scene scene = new Scene(pane);
 		primaryStage.setScene(scene);
 		primaryStage.setWidth(1580);
 		primaryStage.setHeight(840);
 		
-
-		pane.getChildren().add(lblTitle); //Pane
+//Pane
+		pane.getChildren().add(lblTitle); 
 		pane.getChildren().add(staffbox);
 		pane.getChildren().add(lblStaffID);
 		pane.getChildren().add(txtStaffID); 

@@ -13,7 +13,7 @@ public class StaffCRUD extends AdminDatabase implements InfStaffCRUD {
 
 	//Insert
 	@Override
-	public boolean insert(StaffUser user) {
+	public boolean insert (StaffUser user) {
 		boolean result = false;
 		PreparedStatement pStat;
 		String sql = "INSERT INTO staff(staff_id, assign_task) VALUES (?,?);";
@@ -50,8 +50,7 @@ public class StaffCRUD extends AdminDatabase implements InfStaffCRUD {
 			while(resultSet.next()) {
 				user.setStaffID(resultSet.getInt("staff_id"));
 				user.setAssignTask(resultSet.getString("assign_task"));
-				
-				
+			
 			}
 		}
 		catch(Exception ex) {
@@ -59,5 +58,5 @@ public class StaffCRUD extends AdminDatabase implements InfStaffCRUD {
 		}
 		return user;
 	}
-	
+
 }
